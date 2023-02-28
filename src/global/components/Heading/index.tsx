@@ -1,5 +1,3 @@
-import React from 'react'
-
 import { IHeading } from './types'
 import { Content } from './styles'
 

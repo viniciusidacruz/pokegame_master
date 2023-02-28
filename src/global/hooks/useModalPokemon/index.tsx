@@ -7,7 +7,7 @@ import { SiVerizon } from 'react-icons/si'
 import { Heading } from '@components/index'
 import TextField from '@components/TextField'
 
-import { translateTypes } from '@/global/utils/translate'
+import { translateTypes } from '@utils/translate'
 import { ALTERNATIVE_TEXTS } from '@constants/alternatives'
 import {
   addToCapturedPokemonList,
@@ -15,7 +15,7 @@ import {
   removeFromCapturedPokemonList,
 } from '@slices/capturedPokemon'
 
-import { THEME_DEFAULT } from '@/global/styles'
+import { THEME_DEFAULT } from '@global/styles'
 import * as Styles from '@components/Layout/ModalPokemon/styles'
 import { IModalPokemon } from '@components/Layout/ModalPokemon/types'
 

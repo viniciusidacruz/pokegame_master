@@ -8,6 +8,7 @@ module.exports = {
     '^@/(.*)$': '<rootDir>/src/$1',
     '^@global/(.*)$': '<rootDir>/src/global/$1',
     '^@constants/(.*)$': '<rootDir>/src/global/constants/$1',
+    '^@utils/(.*)$': '<rootDir>/src/global/utils/$1',
     '^@hooks/(.*)$': '<rootDir>/src/global/hooks/$1',
     '^@assets/(.*)$': '<rootDir>/src/global/assets/$1',
     '^@services/(.*)$': '<rootDir>/src/global/services/$1',

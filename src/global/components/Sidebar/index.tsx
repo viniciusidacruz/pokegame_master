@@ -1,5 +1,5 @@
 import Image from 'next/image'
-import { Fragment } from 'react'
+import { Fragment, useEffect } from 'react'
 import { useSelector } from 'react-redux'
 import { useTheme } from 'styled-components'
 
@@ -38,6 +38,12 @@ export function Sidebar() {
       handleSelectPokemonForEdit(pokemon)
     }
   }
+
+  useEffect(() => {
+    if (!isModalCreateOpen) {
+      setSelectedMyPokemon(null)
+    }
+  }, [isModalCreateOpen])
 
   return (
     <Fragment>

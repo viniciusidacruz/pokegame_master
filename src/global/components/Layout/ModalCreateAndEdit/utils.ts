@@ -54,16 +54,22 @@ export const initialValues = (selectedMyPokemon: INewObjectPokemon | null) => {
     height: selectedMyPokemon?.height || 0,
     weight: selectedMyPokemon?.weight || 0,
     hp: selectedMyPokemon?.hp || 0,
-    abilityOne: selectedMyPokemon?.abilities[0] || 0,
-    abilityTwo: selectedMyPokemon?.abilities[1] || 0,
-    abilityThree: selectedMyPokemon?.abilities[2] || 0,
-    abilityFour: selectedMyPokemon?.abilities[3] || 0,
+    abilityOne: selectedMyPokemon?.abilities[0]?.ability.name || 0,
+    abilityTwo: selectedMyPokemon?.abilities[1]?.ability.name || 0,
+    abilityThree: selectedMyPokemon?.abilities[2]?.ability.name || 0,
+    abilityFour: selectedMyPokemon?.abilities[3]?.ability.name || 0,
     defense: selectedMyPokemon?.defense || 0,
     attack: selectedMyPokemon?.attack || 0,
     specialAttack: selectedMyPokemon?.specialAttack || 0,
     specialDefense: selectedMyPokemon?.specialDefense || 0,
     speed: selectedMyPokemon?.speed || 0,
     thumbnail: selectedMyPokemon?.thumbnail || null,
-    select: selectedMyPokemon?.types || null,
+    select:
+      [
+        {
+          value: selectedMyPokemon.types[0]?.type.name,
+          label: '',
+        },
+      ] || null,
   }
 }

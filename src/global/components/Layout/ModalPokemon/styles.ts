@@ -69,6 +69,7 @@ export const Container = styled.div`
   flex-direction: column;
   justify-content: flex-end;
   padding: 2rem;
+
   @media (max-width: 740px) and (min-width: 360px) {
     height: 100%;
   }
@@ -77,6 +78,7 @@ export const Container = styled.div`
 export const Content = styled.div`
   padding: 7.5rem 0 6rem 0;
   text-align: center;
+  position: relative;
 `
 
 export const HeaderName = styled.div`
@@ -85,16 +87,9 @@ export const HeaderName = styled.div`
   justify-content: center;
   gap: 0 1rem;
   margin-bottom: 2rem;
+
   h1 {
     text-transform: uppercase;
-  }
-
-  @media (max-width: 740px) and (min-width: 360px) {
-    padding: 10rem 4rem 6rem 1rem;
-    position: absolute;
-    top: 128px;
-    width: 100%;
-    height: 100%;
   }
 
   img {

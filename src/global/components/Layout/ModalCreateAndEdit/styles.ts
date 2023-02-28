@@ -71,6 +71,11 @@ export const Container = styled.div`
   padding: 2rem;
 `
 
+export const Message = styled.span`
+  color: #ff0000;
+  font-size: 0.875rem;
+`
+
 export const Content = styled.form`
   padding: 7rem 0 3rem 0;
   width: 100%;

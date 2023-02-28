@@ -93,6 +93,11 @@ export function ModalCreateAndEdit({
     onClose,
   })
 
+  const defaultSelectValue = selectedMyPokemon?.types?.map((type) => ({
+    value: type.type.name,
+    label: type.type.name,
+  }))
+
   useEffect(() => {
     return () => clearFieldThumbnail()
   }, [])
@@ -127,8 +132,9 @@ export function ModalCreateAndEdit({
         </Styles.Header>
         <Styles.Container>
           <Styles.Content onSubmit={handleSubmit(handleOnSubmitData)}>
-            {(selectedMyPokemon && !selectedMyPokemon.thumbnail) ||
-              (!imageURL && <p>* Selecione uma imagem</p>)}
+            {!selectedMyPokemon?.thumbnail && !imageURL && (
+              <Styles.Message>* Selecione uma imagem</Styles.Message>
+            )}
 
             <Styles.GroupFields>
               <TextField
@@ -185,6 +191,7 @@ export function ModalCreateAndEdit({
               options={options}
               closeMenuOnSelect={false}
               components={animatedComponents}
+              defaultValue={defaultSelectValue}
               onChange={(selected: any) => setValue('select', selected)}
             />
 
@@ -328,9 +335,7 @@ export function ModalCreateAndEdit({
             </Styles.GroupFields>
 
             <Styles.ButtonFooter
-              disabled={
-                (selectedMyPokemon && !selectedMyPokemon.thumbnail) || !imageURL
-              }
+              disabled={!selectedMyPokemon?.thumbnail && !imageURL}
               isSecondary
               type="submit"
               arial-label="Botão para criar um pokemon ou editar"

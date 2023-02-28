@@ -1,3 +1,5 @@
+export * from './useMovement'
 export * from './usePokemonEdit'
 export * from './useModalPokemon'
 export * from './usePokemonCreate'
+export * from './useGeneratePokeModal'

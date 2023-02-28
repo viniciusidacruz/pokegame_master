@@ -41,7 +41,7 @@ export function ModalCreateAndEdit({
   const handleOnSubmitData: SubmitHandler<IFormData | any> = (data) => {
     const abilities = []
     const id = selectedMyPokemon?.id ?? Math.floor(Math.random() * 900) + 100
-    const thumbnail = selectedMyPokemon?.thumbnail ?? imageURL
+    const thumbnail = imageURL
 
     if (!data) return
 
@@ -98,10 +98,6 @@ export function ModalCreateAndEdit({
     label: type.type.name,
   }))
 
-  useEffect(() => {
-    return () => clearFieldThumbnail()
-  }, [])
-
   return (
     <Styles.Background>
       <Styles.Wrapper>
@@ -109,7 +105,7 @@ export function ModalCreateAndEdit({
           <Styles.AvatarProfile>
             <SelectImage
               id="thumbnail"
-              thumbnailSource={selectedMyPokemon?.thumbnail || imageURL}
+              thumbnailSource={imageURL}
               onChange={handleChangeFile}
               onDeleteThumbnail={clearFieldThumbnail}
             />
@@ -132,7 +128,7 @@ export function ModalCreateAndEdit({
         </Styles.Header>
         <Styles.Container>
           <Styles.Content onSubmit={handleSubmit(handleOnSubmitData)}>
-            {!selectedMyPokemon?.thumbnail && !imageURL && (
+            {!imageURL && (
               <Styles.Message>* Selecione uma imagem</Styles.Message>
             )}
 

@@ -1,4 +1,4 @@
-import { ChangeEvent, useState } from 'react'
+import { ChangeEvent, useState, useEffect } from 'react'
 
 import { INewObjectPokemon } from '@models/newObjectPokemon'
 
@@ -24,10 +24,20 @@ export function usePokemonCreate() {
     }
   }
 
-  const clearFieldThumbnail = () => setImageURL(null)
+  const clearFieldThumbnail = () => {
+    if (imageURL) {
+      setImageURL(null)
+    }
+  }
 
   const handleCloseModalCreate = () => setIsModalCreateOpen(false)
   const handleOpenModalCreate = () => setIsModalCreateOpen(true)
+
+  useEffect(() => {
+    if (isModalCreateOpen) {
+      selectedMyPokemon?.thumbnail && setImageURL(selectedMyPokemon?.thumbnail)
+    }
+  }, [isModalCreateOpen])
 
   return {
     imageURL,

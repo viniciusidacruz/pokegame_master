@@ -30,4 +30,9 @@ export const ResetCSS = createGlobalStyle`
             filter: brightness(1.3);
         }
     }
+
+    [disabled] {
+        cursor: not-allowed;
+        opacity: 0.6;
+    }
 `

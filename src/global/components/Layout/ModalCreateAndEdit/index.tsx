@@ -30,7 +30,7 @@ export function ModalCreateAndEdit({
   clearFieldThumbnail,
   clearSelectedPokemon,
 }: IModalCreateAndEdit) {
-  const { register, handleSubmit, setValue, resetField, getValues } = useForm({
+  const { register, handleSubmit, setValue } = useForm({
     defaultValues: initialValues(selectedMyPokemon),
   })
 
@@ -75,14 +75,6 @@ export function ModalCreateAndEdit({
     clearSelectedPokemon()
   }
 
-  const handleDeleteThumbnail = () => {
-    if (selectedMyPokemon?.id) {
-      resetField('thumbnail')
-    } else {
-      clearFieldThumbnail()
-    }
-  }
-
   const handleRemovePokemonList = () => {
     if (!selectedMyPokemon?.id) return
 
@@ -112,9 +104,9 @@ export function ModalCreateAndEdit({
           <Styles.AvatarProfile>
             <SelectImage
               id="thumbnail"
-              thumbnailSource={imageURL}
+              thumbnailSource={selectedMyPokemon?.thumbnail || imageURL}
               onChange={handleChangeFile}
-              onDeleteThumbnail={handleDeleteThumbnail}
+              onDeleteThumbnail={clearFieldThumbnail}
             />
           </Styles.AvatarProfile>
 
@@ -135,6 +127,9 @@ export function ModalCreateAndEdit({
         </Styles.Header>
         <Styles.Container>
           <Styles.Content onSubmit={handleSubmit(handleOnSubmitData)}>
+            {(selectedMyPokemon && !selectedMyPokemon.thumbnail) ||
+              (!imageURL && <p>* Selecione uma imagem</p>)}
+
             <Styles.GroupFields>
               <TextField
                 required
@@ -333,6 +328,9 @@ export function ModalCreateAndEdit({
             </Styles.GroupFields>
 
             <Styles.ButtonFooter
+              disabled={
+                (selectedMyPokemon && !selectedMyPokemon.thumbnail) || !imageURL
+              }
               isSecondary
               type="submit"
               arial-label="Botão para criar um pokemon ou editar"

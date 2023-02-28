@@ -1,7 +1,6 @@
 import { ChangeEvent } from 'react'
 
-import { IPokemonParams } from '@/global/@types/models/pokemon'
-import { INewObjectPokemon } from '@/global/@types/models/newObjectPokemon'
+import { INewObjectPokemon } from '@models/newObjectPokemon'
 
 export interface IModalCreateAndEdit {
   imageURL: string | ArrayBuffer | null

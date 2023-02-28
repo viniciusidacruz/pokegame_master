@@ -30,8 +30,6 @@ export function Sidebar() {
     (state: RootState) => state.capturedPokemon.pokemons
   )
 
-  console.log('Lista: ', capturedPokemonList)
-
   const handleValidateOpenModal = (pokemon: INewObjectPokemon) => {
     if (pokemon.isNew) {
       setSelectedMyPokemon(pokemon)

@@ -1,7 +1,8 @@
 import Image from 'next/image'
 import styled, { css } from 'styled-components'
 
-import { Button, Heading } from '@components/index'
+import { Button } from '@components/index'
+import { Heading } from '../../Heading'
 
 import { IModalStyles } from './types'
 import { THEME_DEFAULT } from '@/global/styles'

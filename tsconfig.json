@@ -23,6 +23,7 @@
       "@store/*": ["./src/global/store/*"],
       "@styles/*": ["./src/global/styles/*"],
       "@assets/*": ["./src/global/assets/*"],
+      "@configs/*": ["./src/global/configs/*"],
       "@services/*": ["./src/global/services/*"],
       "@constants/*": ["./src/global/constants/*"],
       "@slices/*": ["./src/global/store/slices/*"],

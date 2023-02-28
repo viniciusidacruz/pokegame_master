@@ -76,9 +76,10 @@ export const Container = styled.div`
 `
 
 export const Content = styled.div`
-  padding: 7.5rem 0 6rem 0;
   text-align: center;
   position: relative;
+  top: 7rem;
+  height: 100%;
 `
 
 export const HeaderName = styled.div`
@@ -110,7 +111,7 @@ export const ButtonField = styled.button`
 
 export const AvatarProfile = styled.div`
   position: absolute;
-  top: 32px;
+  top: 2rem;
   border: 4px solid ${({ theme }) => theme.colors.primary.default};
   height: 14.5rem;
   width: 14.5rem;

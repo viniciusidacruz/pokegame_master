@@ -36,6 +36,8 @@ export function usePokemonCreate() {
   useEffect(() => {
     if (isModalCreateOpen) {
       selectedMyPokemon?.thumbnail && setImageURL(selectedMyPokemon?.thumbnail)
+    } else {
+      setImageURL(null)
     }
   }, [isModalCreateOpen])
 

@@ -19,6 +19,7 @@
       "@/*": ["./src/*"],
       "@global/*": ["./src/global/*"],
       "@types/*": ["./src/global/types/*"],
+      "@utils/*": ["./src/global/utils/*"],
       "@hooks/*": ["./src/global/hooks/*"],
       "@store/*": ["./src/global/store/*"],
       "@styles/*": ["./src/global/styles/*"],

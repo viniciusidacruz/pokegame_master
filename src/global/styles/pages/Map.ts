@@ -14,7 +14,7 @@ export const Main = styled.main`
   justify-content: center;
   position: relative;
 
-  @media (max-width: 768px) {
+  @media (max-width: 740px) and (min-width: 360px) {
     background-size: cover;
   }
 `

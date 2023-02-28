@@ -69,7 +69,7 @@ export const Container = styled.div`
   flex-direction: column;
   justify-content: flex-end;
   padding: 2rem;
-  @media (max-width: 768px) {
+  @media (max-width: 740px) and (min-width: 360px) {
     height: 100%;
   }
 `
@@ -89,7 +89,7 @@ export const HeaderName = styled.div`
     text-transform: uppercase;
   }
 
-  @media (max-width: 768px) {
+  @media (max-width: 740px) and (min-width: 360px) {
     padding: 10rem 4rem 6rem 1rem;
     position: absolute;
     top: 128px;

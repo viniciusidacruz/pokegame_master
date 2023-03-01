@@ -7,7 +7,11 @@ import { Modal, ModalCreateAndEdit, ModalPokemon } from '@components/index'
 
 import { RootState } from '@/global/store'
 import { usePokemonEdit, usePokemonCreate } from '@hooks/index'
-import { handleModalState, handleCreateModalState } from '@slices/modalPokemon'
+import {
+  handleModalState,
+  handleCreateModalState,
+  handleSelectedImageURL,
+} from '@slices/modalPokemon'
 
 import * as Styles from './styles'
 import { INewObjectPokemon } from '@models/newObjectPokemon'
@@ -16,7 +20,6 @@ export function Sidebar() {
   const { colors } = useTheme()
   const { handleSelectPokemonForEdit } = usePokemonEdit()
   const {
-    imageURL,
     handleChangeFile,
     isModalCreateOpen,
     selectedMyPokemon,
@@ -32,6 +35,7 @@ export function Sidebar() {
 
   const handleValidateOpenModal = (pokemon: INewObjectPokemon) => {
     dispatch(handleModalState())
+    dispatch(handleSelectedImageURL(pokemon.thumbnail))
     setSelectedMyPokemon(pokemon)
 
     if (pokemon.isNew) {
@@ -40,6 +44,8 @@ export function Sidebar() {
     }
   }
   const handleOpenCreateModal = () => {
+    setSelectedMyPokemon(null)
+    dispatch(handleSelectedImageURL(null))
     dispatch(handleCreateModalState())
   }
 
@@ -107,11 +113,11 @@ export function Sidebar() {
         onClose={() => dispatch(handleCreateModalState())}
       >
         <ModalCreateAndEdit
-          imageURL={imageURL}
-          onClose={() => dispatch(handleCreateModalState())}
           handleChangeFile={handleChangeFile}
           selectedMyPokemon={selectedMyPokemon}
+          imageURL={modalPokemon.selectedImageURL}
           clearFieldThumbnail={clearFieldThumbnail}
+          onClose={() => dispatch(handleCreateModalState())}
           clearSelectedPokemon={() => setSelectedMyPokemon(null)}
         />
       </Modal>

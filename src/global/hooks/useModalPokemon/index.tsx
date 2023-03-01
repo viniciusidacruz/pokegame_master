@@ -1,21 +1,22 @@
 import Image from 'next/image'
 import { GrClose } from 'react-icons/gr'
-import { useDispatch } from 'react-redux'
-import { Fragment, useState } from 'react'
 import { SiVerizon } from 'react-icons/si'
+import { Fragment, useState } from 'react'
+import { useDispatch, useSelector } from 'react-redux'
 
 import TextField from '@components/TextField'
 import { Heading, Modal, ModalCreateAndEdit } from '@components/index'
 
+import { RootState } from '@global/store'
 import { translateTypes } from '@utils/translate'
 import { usePokemonCreate } from '@hooks/usePokemonCreate'
 import { ALTERNATIVE_TEXTS } from '@constants/alternatives'
+import { handleCreateModalState, handleModalState } from '@slices/modalPokemon'
 import {
   addToCapturedPokemonList,
   editNamePokemon,
   removeFromCapturedPokemonList,
 } from '@slices/capturedPokemon'
-import { handleCreateModalState, handleModalState } from '@slices/modalPokemon'
 
 import { THEME_DEFAULT } from '@global/styles'
 import * as Styles from '@components/Layout/ModalPokemon/styles'
@@ -29,7 +30,6 @@ export const useModalPokemon = ({
   const [showField, setShowField] = useState(false)
   const [initialValueInput, setInitialValueInput] = useState(data?.name || '')
   const {
-    imageURL,
     handleChangeFile,
     isModalCreateOpen,
     selectedMyPokemon,
@@ -37,6 +37,10 @@ export const useModalPokemon = ({
     setSelectedMyPokemon,
     handleCloseModalCreate,
   } = usePokemonCreate()
+
+  const { selectedImageURL } = useSelector(
+    (state: RootState) => state.modalPokemon
+  )
 
   const handleShowEditField = () => {
     setShowField(!showField)
@@ -97,7 +101,7 @@ export const useModalPokemon = ({
         {data?.isNew ? (
           <Modal isOpen={isModalCreateOpen} onClose={handleCloseModalCreate}>
             <ModalCreateAndEdit
-              imageURL={imageURL}
+              imageURL={selectedImageURL}
               onClose={handleCloseModalCreate}
               handleChangeFile={handleChangeFile}
               selectedMyPokemon={selectedMyPokemon}

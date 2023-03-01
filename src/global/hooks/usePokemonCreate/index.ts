@@ -1,12 +1,15 @@
-import { ChangeEvent, useState, useEffect } from 'react'
+import { useDispatch } from 'react-redux'
+import { ChangeEvent, useState } from 'react'
 
 import { INewObjectPokemon } from '@models/newObjectPokemon'
+import { handleSelectedImageURL } from '@slices/modalPokemon'
 
 export function usePokemonCreate() {
   const [selectedMyPokemon, setSelectedMyPokemon] =
     useState<INewObjectPokemon | null>(null)
   const [isModalCreateOpen, setIsModalCreateOpen] = useState(false)
-  const [imageURL, setImageURL] = useState<string | ArrayBuffer | null>(null)
+
+  const dispatch = useDispatch()
 
   const handleChangeFile = (event: ChangeEvent<HTMLInputElement>) => {
     if (event.target.files) {
@@ -17,32 +20,21 @@ export function usePokemonCreate() {
 
       reader.onload = () => {
         const imageUrl = reader.result
-        setImageURL(imageUrl)
+        dispatch(handleSelectedImageURL(imageUrl))
       }
     } else {
-      setImageURL(null)
+      dispatch(handleSelectedImageURL(null))
     }
   }
 
   const clearFieldThumbnail = () => {
-    if (imageURL) {
-      setImageURL(null)
-    }
+    dispatch(handleSelectedImageURL(null))
   }
 
   const handleCloseModalCreate = () => setIsModalCreateOpen(false)
   const handleOpenModalCreate = () => setIsModalCreateOpen(true)
 
-  useEffect(() => {
-    if (isModalCreateOpen) {
-      selectedMyPokemon?.thumbnail && setImageURL(selectedMyPokemon?.thumbnail)
-    } else {
-      setImageURL(null)
-    }
-  }, [isModalCreateOpen])
-
   return {
-    imageURL,
     handleChangeFile,
     selectedMyPokemon,
     isModalCreateOpen,

@@ -7,7 +7,6 @@ describe('usePokemonCreate', () => {
   test('should return initial values', () => {
     const { result } = renderHook(() => usePokemonCreate())
 
-    expect(result.current.imageURL).toBe(null)
     expect(result.current.selectedMyPokemon).toBe(null)
     expect(result.current.isModalCreateOpen).toBe(false)
   })

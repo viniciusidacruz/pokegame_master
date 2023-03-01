@@ -4,16 +4,18 @@ import { useDispatch } from 'react-redux'
 import { Fragment, useState } from 'react'
 import { SiVerizon } from 'react-icons/si'
 
-import { Heading } from '@components/index'
 import TextField from '@components/TextField'
+import { Heading, Modal, ModalCreateAndEdit } from '@components/index'
 
 import { translateTypes } from '@utils/translate'
+import { usePokemonCreate } from '@hooks/usePokemonCreate'
 import { ALTERNATIVE_TEXTS } from '@constants/alternatives'
 import {
   addToCapturedPokemonList,
   editNamePokemon,
   removeFromCapturedPokemonList,
 } from '@slices/capturedPokemon'
+import { handleCreateModalState, handleModalState } from '@slices/modalPokemon'
 
 import { THEME_DEFAULT } from '@global/styles'
 import * as Styles from '@components/Layout/ModalPokemon/styles'
@@ -26,8 +28,25 @@ export const useModalPokemon = ({
 }: IModalPokemon) => {
   const [showField, setShowField] = useState(false)
   const [initialValueInput, setInitialValueInput] = useState(data?.name || '')
+  const {
+    imageURL,
+    handleChangeFile,
+    isModalCreateOpen,
+    selectedMyPokemon,
+    clearFieldThumbnail,
+    setSelectedMyPokemon,
+    handleCloseModalCreate,
+  } = usePokemonCreate()
 
-  const handleShowEditField = () => setShowField(!showField)
+  const handleShowEditField = () => {
+    setShowField(!showField)
+    setSelectedMyPokemon(data)
+
+    if (data?.isNew) {
+      dispatch(handleModalState())
+      dispatch(handleCreateModalState())
+    }
+  }
 
   const dispatch = useDispatch()
 
@@ -75,26 +94,41 @@ export const useModalPokemon = ({
 
     return (
       <Fragment>
-        <TextField
-          value={initialValueInput}
-          onChange={(event) => setInitialValueInput(event.target.value)}
-        />
+        {data?.isNew ? (
+          <Modal isOpen={isModalCreateOpen} onClose={handleCloseModalCreate}>
+            <ModalCreateAndEdit
+              imageURL={imageURL}
+              onClose={handleCloseModalCreate}
+              handleChangeFile={handleChangeFile}
+              selectedMyPokemon={selectedMyPokemon}
+              clearFieldThumbnail={clearFieldThumbnail}
+              clearSelectedPokemon={() => setSelectedMyPokemon(null)}
+            />
+          </Modal>
+        ) : (
+          <Fragment>
+            <TextField
+              value={initialValueInput}
+              onChange={(event) => setInitialValueInput(event.target.value)}
+            />
 
-        <Styles.ButtonField
-          type="button"
-          onClick={handleEditNamePokemon}
-          aria-label="Confirmar a alteração do nome"
-        >
-          <SiVerizon />
-        </Styles.ButtonField>
+            <Styles.ButtonField
+              type="button"
+              onClick={handleEditNamePokemon}
+              aria-label="Confirmar a alteração do nome"
+            >
+              <SiVerizon />
+            </Styles.ButtonField>
 
-        <Styles.ButtonField
-          type="button"
-          onClick={handleShowEditField}
-          aria-label="Esconder campo de edição"
-        >
-          <GrClose />
-        </Styles.ButtonField>
+            <Styles.ButtonField
+              type="button"
+              onClick={handleShowEditField}
+              aria-label="Esconder campo de edição"
+            >
+              <GrClose />
+            </Styles.ButtonField>
+          </Fragment>
+        )}
       </Fragment>
     )
   }

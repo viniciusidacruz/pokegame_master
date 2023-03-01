@@ -2,12 +2,8 @@ import Image from 'next/image'
 import { useSelector } from 'react-redux'
 import { useCallback, useEffect, useRef, useState } from 'react'
 
-import ashStopSource from '@assets/images/ashStop.png'
-import ashFrontSource from '@assets/images/ashFront.png'
 import errorSource from '@assets/images/tooltipError.png'
 import searchSource from '@assets/images/searchTooltip.png'
-import ashLeftLegSource from '@assets/images/ashLeftLeg.png'
-import ashRightLegSource from '@assets/images/ashRightLeg.png'
 import searchingSource from '@assets/images/searchingTooltip.png'
 
 import { RootState } from '@global/store'
@@ -29,9 +25,9 @@ export const useMovement = (handleOpenModal: () => void) => {
   )
 
   const listPositionsAshImages = [
-    ashLeftLegSource,
-    ashRightLegSource,
-    ashStopSource,
+    '/ashLeftLeg.png',
+    '/ashRightLeg.png',
+    '/ashStop.png',
   ]
 
   const ashRef = useRef<HTMLDivElement | null>(null)
@@ -154,7 +150,7 @@ export const useMovement = (handleOpenModal: () => void) => {
 
   const positionAshImage = loading
     ? listPositionsAshImages[positionStartCharacter]
-    : ashFrontSource
+    : '/ashFront.png'
 
   return {
     ashRef,

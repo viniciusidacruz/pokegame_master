@@ -5,7 +5,7 @@ import makeAnimated from 'react-select/animated'
 import React, { useEffect, useState } from 'react'
 import { useForm, SubmitHandler } from 'react-hook-form'
 
-import { useModalPokemon } from '@/global/hooks'
+import { useModalPokemon } from '@global/hooks'
 import {
   editPokemon,
   removeFromCapturedPokemonList,
@@ -93,9 +93,9 @@ export function ModalCreateAndEdit({
     onClose,
   })
 
-  const defaultSelectValue = selectedMyPokemon?.types?.map((type) => ({
-    value: type.type.name,
-    label: type.type.name,
+  const defaultSelectValue = selectedMyPokemon?.types?.map((pokemon) => ({
+    value: pokemon.type.name,
+    label: pokemon.type.name,
   }))
 
   return (

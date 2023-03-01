@@ -5,8 +5,8 @@ import Home from '../../src/pages/index'
 
 import { THEME_DEFAULT } from '@/global/styles'
 
-describe('Redirect Component', () => {
-  test('Should render title and path', () => {
+describe('Home Page', () => {
+  test('Should render content correctly', () => {
     const { getByTestId } = render(
       <ThemeProvider theme={THEME_DEFAULT}>
         <Home />

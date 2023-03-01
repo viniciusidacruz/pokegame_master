@@ -1,5 +1,5 @@
-import { render } from '@testing-library/react'
 import { Provider } from 'react-redux'
+import { render } from '@testing-library/react'
 import { ThemeProvider } from 'styled-components'
 
 import Map from '../../src/pages/map'
@@ -7,9 +7,9 @@ import Map from '../../src/pages/map'
 import { store } from '@global/store'
 import { THEME_DEFAULT } from '@global/styles'
 
-describe('Redirect Component', () => {
-  test('Should render title and path', () => {
-    const { getByTestId, queryByTestId } = render(
+describe('Map Page', () => {
+  test('Should render content correctly', () => {
+    const { getByTestId } = render(
       <ThemeProvider theme={THEME_DEFAULT}>
         <Provider store={store}>
           <Map />

@@ -80,6 +80,7 @@ export const Content = styled.div`
   position: relative;
   top: 7rem;
   height: 100%;
+  padding-bottom: 5rem;
 `
 
 export const HeaderName = styled.div`
